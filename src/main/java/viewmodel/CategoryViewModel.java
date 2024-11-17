@@ -1,2 +1,6 @@
-package viewmodel;public record CategoryViewModel() {
-}
+package viewmodel;
+
+public record CategoryViewModel(
+        String name,
+        String description
+) { }
