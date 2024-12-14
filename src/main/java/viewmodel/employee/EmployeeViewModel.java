@@ -1,9 +1,8 @@
-package viewmodel;
+package viewmodel.employee;
 
 public record EmployeeViewModel(
         String name,
         String surname,
-        Integer workExperience,
-        String Url
+        Integer clientCount
 ) {
 }

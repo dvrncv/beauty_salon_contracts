@@ -1,4 +1,4 @@
-package viewmodel;
+package viewmodel.employee;
 
 import java.time.LocalDate;
 
