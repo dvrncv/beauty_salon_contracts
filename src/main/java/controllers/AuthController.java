@@ -2,6 +2,7 @@ package controllers;
 
 import form.LoginInputModel;
 import form.RegistrationInputModel;
+import form.UserRegistrationInputModel;
 import jakarta.validation.Valid;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -9,25 +10,43 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import viewmodel.auth.UserProfileView;
 
 import javax.naming.Binding;
+import java.security.Principal;
 
-@RequestMapping("/auth")
+@RequestMapping("/users")
 public interface AuthController {
 
-    @GetMapping("/register")
-    String registerForm(Model model);
+    @GetMapping("/register-employee")
+    String registerEmployee(Principal principal);
 
-    @PostMapping("/register")
-    String register(
-            @Valid
-            @ModelAttribute("register") RegistrationInputModel registrationInputModel, BindingResult bindingResult, Model model);
+    @PostMapping("/register-employee")
+    String staffRegister(UserRegistrationInputModel userRegistrationInputModel,
+                         BindingResult bindingResult,
+                         Principal principal,
+                         RedirectAttributes redirectAttributes);
+
+
+    @GetMapping("/register-client")
+    String registerClient(Principal principal);
+
+    @PostMapping("/register-client")
+    String doRegisterClient(@Valid UserRegistrationInputModel userRegistrationInputModel,
+                            BindingResult bindingResult,
+                            Principal principal,
+                            RedirectAttributes redirectAttributes);
+
 
     @GetMapping("/login")
-    String loginForm(Model model);
+    String login();
 
-    @PostMapping("/login")
-    String login(@Valid
-                 @ModelAttribute("login") LoginInputModel loginInputModel, BindingResult bindingResult, Model model);
+    @PostMapping("/login-error")
+    String onFailedLogin(@ModelAttribute("username") String username,
+                         RedirectAttributes redirectAttributes);
 
+    @GetMapping("/profile")
+    String profile(Principal principal, Model model);
 }
+

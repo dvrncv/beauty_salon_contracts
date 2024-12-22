@@ -1,10 +1,9 @@
 package viewmodel.employee;
 
-import java.time.LocalDate;
-
 public record EmployeePickViewModel(
-        String surname,
+        Long id,
         String name,
-        LocalDate startDate
+        String surname
+
 ) {
 }
