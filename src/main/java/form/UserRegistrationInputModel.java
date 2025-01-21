@@ -1,5 +1,7 @@
 package form;
 
+import jakarta.validation.constraints.*;
+
 public class UserRegistrationInputModel {
     private String name;
     private String surname;
@@ -16,7 +18,7 @@ public class UserRegistrationInputModel {
         this.password = password;
         this.confirmPassword = confirmPassword;
     }
-
+    @NotEmpty(message = "Name cannot be null or empty!")
     public String getName() {
         return name;
     }
@@ -25,6 +27,7 @@ public class UserRegistrationInputModel {
         this.name = name;
     }
 
+    @NotEmpty(message = "Surname cannot be null or empty!")
     public String getSurname() {
         return surname;
     }
@@ -32,7 +35,7 @@ public class UserRegistrationInputModel {
     public void setSurname(String surname) {
         this.surname = surname;
     }
-
+    @Min(8)
     public String getNumberPhone() {
         return numberPhone;
     }
@@ -41,6 +44,8 @@ public class UserRegistrationInputModel {
         this.numberPhone = numberPhone;
     }
 
+    @NotEmpty(message = "Email cannot be null or empty!")
+    @Email
     public String getEmail() {
         return email;
     }
@@ -48,7 +53,8 @@ public class UserRegistrationInputModel {
     public void setEmail(String email) {
         this.email = email;
     }
-
+    @NotEmpty(message = "Password cannot be null or empty!")
+    @Size(min = 5, max = 20)
     public String getPassword() {
         return password;
     }
@@ -57,6 +63,8 @@ public class UserRegistrationInputModel {
         this.password = password;
     }
 
+    @NotEmpty(message = "Confirm Password cannot be null or empty!")
+    @Size(min = 5, max = 20)
     public String getConfirmPassword() {
         return confirmPassword;
     }

@@ -30,12 +30,11 @@ public interface AuthController {
 
 
     @GetMapping("/register-client")
-    String registerClient(Principal principal);
+    String registerClient();
 
     @PostMapping("/register-client")
     String doRegisterClient(@Valid UserRegistrationInputModel userRegistrationInputModel,
                             BindingResult bindingResult,
-                            Principal principal,
                             RedirectAttributes redirectAttributes);
 
 
